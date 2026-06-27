@@ -41,7 +41,7 @@ def valid_email(email):
 def send_email(to_email, subject, body):
     try:
         if not EMAIL_USER or not EMAIL_PASSWORD:
-            print("Email failed: EMAIL_USER or EMAIL_PASSWORD missing in .env")
+            print("Email failed: EMAIL_USER or EMAIL_PASSWORD missing")
             return False
 
         msg = MIMEText(body)
@@ -49,8 +49,7 @@ def send_email(to_email, subject, body):
         msg["From"] = EMAIL_USER
         msg["To"] = to_email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=20)
-        server.starttls()
+        server = smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30)
         server.login(EMAIL_USER, EMAIL_PASSWORD)
         server.send_message(msg)
         server.quit()
@@ -61,7 +60,6 @@ def send_email(to_email, subject, body):
     except Exception as e:
         print("Email failed:", e)
         return False
-
 
 @app.route("/")
 def home():
