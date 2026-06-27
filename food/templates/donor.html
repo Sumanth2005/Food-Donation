@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donate Food</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="donor-bg">
+
+<div class="form-box">
+    <h2>Donate Food</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="donor_name" placeholder="Donor Name"
+               pattern="[A-Za-z ]+" title="Only alphabets allowed" required>
+
+        <input type="text" name="location" placeholder="Pickup Location" required>
+
+        <input type="number" name="quantity" placeholder="Quantity of Food" min="1" required>
+
+        <input type="text" name="food_type" placeholder="Type of Food" required>
+
+        <button type="submit">Donate Food</button>
+    </form>
+</div>
+
+</body>
+</html>

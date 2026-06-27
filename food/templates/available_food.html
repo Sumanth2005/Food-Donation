@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Food</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="food-bg">
+
+<nav>
+    <h2>FoodShare</h2>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/available_food">Available Food</a></li>
+        <li><a href="/impact">Impact Report</a></li>
+    </ul>
+</nav>
+
+<h1 class="page-title">Available Food</h1>
+
+<div class="food-container">
+
+    {% if foods %}
+        {% for food in foods %}
+        <div class="food-card">
+            <h3>{{ food.food_type }}</h3>
+
+            <p><b>Donor:</b> {{ food.donor_name }}</p>
+            <p><b>Location:</b> {{ food.location }}</p>
+            <p><b>Available Quantity:</b> {{ food.quantity }}</p>
+
+            <a href="/order/{{ food.id }}" class="order-btn">Order Food</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="message-box">
+            <h1>No Food Available</h1>
+            <p>Currently there is no food available for ordering.</p>
+            <a href="/" class="btn">Back to Home</a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

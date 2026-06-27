@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Proof</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="success-bg">
+
+<div class="form-box">
+
+    <h2>Upload NGO Proof</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="ngo_name" placeholder="NGO Name" required>
+
+        <input type="text" name="ngo_location" placeholder="NGO Location" required>
+
+        <input type="tel" name="ngo_phone" placeholder="NGO Contact Number"
+               pattern="[0-9]{10}" maxlength="10" required>
+
+        <input type="number" name="people_served" placeholder="Number of People Served" min="1" required>
+
+        <input type="file" name="proof_image" accept="image/*" required>
+
+        <button type="submit">Submit Proof</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NGO Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="ngo-bg">
+
+<div class="form-box">
+    <h2>NGO Details</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="ngo_name" placeholder="NGO Name" required>
+
+        <input type="text" name="location" placeholder="NGO Location" required>
+
+        <input type="tel" name="phone" placeholder="Enter 10 Digit Phone Number"
+               pattern="[0-9]{10}" maxlength="10" required>
+
+        <button type="submit">Continue</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Food</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="food-bg">
+
+<div class="form-box">
+    <h2>Order Food</h2>
+
+    <p><b>Food Type:</b> {{ food.food_type }}</p>
+    <p><b>Available Quantity:</b> {{ food.quantity }}</p>
+    <p><b>Location:</b> {{ food.location }}</p>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input 
+            type="number" 
+            name="required_quantity" 
+            min="1" 
+            max="{{ food.quantity }}"
+            placeholder="Enter Required Quantity" 
+            required
+        >
+
+        <button type="submit">Confirm Order</button>
+    </form>
+
+    <br>
+    <a href="/available_food" class="btn white">Back</a>
+</div>
+
+</body>
+</html>

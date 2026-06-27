@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Impact Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="food-bg">
+
+<nav>
+    <h2>FoodShare</h2>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/available_food">Available Food</a></li>
+        <li><a href="/admin_verify">Admin Verify</a></li>
+    </ul>
+</nav>
+
+<h1 class="page-title">Donation Impact Report</h1>
+
+<div class="food-container">
+
+    {% if donation %}
+
+    <div class="food-card">
+        <h3>{{ donation.food_type }}</h3>
+
+        <p><b>Donor:</b> {{ donation.donor_name }}</p>
+        <p><b>Pickup Location:</b> {{ donation.location }}</p>
+        <p><b>Quantity:</b> {{ donation.quantity }}</p>
+        <p><b>Status:</b> {{ donation.status }}</p>
+
+        {% if donation.proof_image %}
+            <img src="{{ url_for('static', filename=donation.proof_image) }}"
+                 style="width:100%; border-radius:12px; margin:15px 0;">
+        {% endif %}
+
+        <p><b>NGO Name:</b> {{ donation.ngo_name }}</p>
+        <p><b>NGO Location:</b> {{ donation.ngo_location }}</p>
+        <p><b>NGO Contact:</b> {{ donation.ngo_phone }}</p>
+        <p><b>People Served:</b> {{ donation.people_served }}</p>
+
+        {% if donation.proof_status == "approved" %}
+            <p style="color:green;"><b>Verified Donation Completed</b></p>
+        {% elif donation.proof_status == "waiting_admin_verification" %}
+            <p style="color:blue;"><b>Proof uploaded. Waiting for admin approval.</b></p>
+        {% elif donation.proof_status == "pending_upload" %}
+            <p style="color:orange;"><b>Waiting for NGO proof upload.</b></p>
+            <a href="/upload_proof/{{ donation.id }}" class="order-btn">Upload Proof</a>
+        {% else %}
+            <p style="color:red;"><b>Proof not completed.</b></p>
+        {% endif %}
+    </div>
+
+    {% else %}
+
+    <div class="message-box">
+        <h1>No Impact Record</h1>
+        <p>No completed or uploaded donation proof is available yet.</p>
+        <a href="/available_food" class="btn">View Available Food</a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+}
+
+.home-bg{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+.login-bg{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+.donor-bg{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+.ngo-bg{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+.food-bg{
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+    url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+.success-bg{
+    background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url("https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 8%;
+    background:rgba(0,0,0,.45);
+}
+
+nav h2{
+    color:#27ae60;
+    font-size:36px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:35px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:bold;
+}
+
+nav ul li a:hover{
+    color:#27ae60;
+}
+
+.hero{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:70px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    font-size:26px;
+    margin-bottom:35px;
+}
+
+.btn{
+    background:#27ae60;
+    color:white;
+    padding:15px 40px;
+    border-radius:40px;
+    text-decoration:none;
+    font-size:20px;
+    margin:10px;
+    display:inline-block;
+}
+
+.white{
+    background:white;
+    color:#27ae60;
+}
+
+.form-box{
+    width:430px;
+    background:white;
+    color:#222;
+    padding:40px;
+    border-radius:18px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    box-shadow:0 10px 35px rgba(0,0,0,.4);
+}
+
+.form-box h2{
+    text-align:center;
+    color:#27ae60;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.form-box input,
+.form-box select{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.form-box button{
+    width:100%;
+    padding:14px;
+    background:#27ae60;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.form-box button:hover{
+    background:#219150;
+}
+
+.error{
+    color:red;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.page-title{
+    text-align:center;
+    margin:35px;
+    font-size:45px;
+}
+
+.food-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+    padding:20px;
+}
+
+.food-card{
+    width:300px;
+    background:white;
+    color:#222;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.4);
+}
+
+.food-card h3{
+    color:#27ae60;
+    margin-bottom:15px;
+    font-size:26px;
+}
+
+.food-card p{
+    margin:10px 0;
+    font-size:17px;
+}
+
+.order-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 25px;
+    background:#27ae60;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+}
+
+.message-box{
+    background:white;
+    color:#222;
+    width:500px;
+    padding:45px;
+    border-radius:20px;
+    text-align:center;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+.message-box h1{
+    color:#27ae60;
+    margin-bottom:20px;
+}

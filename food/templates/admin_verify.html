@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="food-bg">
+
+<nav>
+    <h2>FoodShare Admin</h2>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/impact">Impact Report</a></li>
+        <li><a href="/available_food">Available Food</a></li>
+    </ul>
+</nav>
+
+<h1 class="page-title">Admin Proof Verification</h1>
+
+<div class="food-container">
+
+    {% if proofs %}
+        {% for p in proofs %}
+        <div class="food-card">
+
+            <h3>{{ p.food_type }}</h3>
+
+            <p><b>Donor Name:</b> {{ p.donor_name }}</p>
+            <p><b>Donor Email:</b> {{ p.donor_email }}</p>
+            <p><b>Donor Location:</b> {{ p.location }}</p>
+            <p><b>Remaining Quantity:</b> {{ p.quantity }}</p>
+
+            <hr>
+
+            <p><b>NGO Name:</b> {{ p.ngo_name }}</p>
+            <p><b>NGO Location:</b> {{ p.ngo_location }}</p>
+            <p><b>NGO Contact:</b> {{ p.ngo_phone }}</p>
+            <p><b>People Served:</b> {{ p.people_served }}</p>
+            <p><b>Status:</b> {{ p.status }}</p>
+
+            {% if p.proof_image %}
+                <img src="{{ url_for('static', filename=p.proof_image) }}" 
+                     style="width:100%; border-radius:12px; margin-top:15px;">
+            {% else %}
+                <p style="color:red;"><b>No proof image uploaded.</b></p>
+            {% endif %}
+
+            <br><br>
+
+            <a href="/approve/{{ p.id }}" class="order-btn">Approve</a>
+            <a href="/reject/{{ p.id }}" class="order-btn" style="background:#e74c3c;">Reject</a>
+
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="message-box">
+            <h1>No Pending Proofs</h1>
+            <p>There are no NGO proofs waiting for verification.</p>
+            <a href="/" class="btn">Back to Home</a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

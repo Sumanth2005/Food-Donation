@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="home-bg">
+
+    <div class="hero">
+
+        <h1>Donate Food, Spread Happiness</h1>
+
+        <p>Every meal you donate can change someone's life.</p>
+
+        <div class="buttons">
+
+            <a href="/login" class="btn">
+                Login
+            </a>
+
+            <a href="/login?next=available_food" class="btn white">
+                Find Food
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

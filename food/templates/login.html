@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-bg">
+
+<div class="form-box">
+    <h2>User Login</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Enter Name"
+               pattern="[A-Za-z ]+" title="Only alphabets allowed" required>
+
+        <input type="email" name="email" placeholder="Enter Email" required>
+
+        <input type="tel" name="phone" placeholder="Enter 10 Digit Phone Number"
+               pattern="[0-9]{10}" maxlength="10" title="Enter exactly 10 digits" required>
+
+        <select name="role" required>
+            <option value="">Select Option</option>
+            <option value="donate">Donate</option>
+            <option value="ngo">NGO</option>
+        </select>
+
+        <button type="submit">Continue</button>
+    </form>
+</div>
+
+</body>
+</html>

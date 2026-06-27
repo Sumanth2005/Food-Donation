@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+</head>
+<body>
+
+<h2>Contact Us</h2>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p style="color:red;">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form method="POST">
+    <label>Name:</label><br>
+    <input type="text" name="name" pattern="[A-Za-z ]+" title="Only alphabets allowed" required><br><br>
+
+    <label>Phone Number:</label><br>
+    <input type="text" name="phone" pattern="[0-9]{10}" maxlength="10" title="Enter exactly 10 digits" required><br><br>
+
+    <label>Message:</label><br>
+    <textarea name="message" required></textarea><br><br>
+
+    <button type="submit">Send</button>
+</form>
+
+</body>
+</html>
