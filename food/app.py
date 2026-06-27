@@ -3,10 +3,9 @@ from supabase import create_client
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 from datetime import datetime
-from email.mime.text import MIMEText
-import smtplib
 import os
 import re
+import requests
 
 load_dotenv()
 
@@ -21,7 +20,7 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
 EMAIL_USER = os.getenv("EMAIL_USER")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
@@ -38,11 +37,12 @@ def valid_email(email):
     return re.fullmatch(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$", email) is not None
 
 
-import requests
-
 def send_email(to_email, subject, body):
     try:
-        BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+        print("EMAIL FUNCTION CALLED")
+        print("TO EMAIL:", to_email)
+        print("EMAIL USER:", EMAIL_USER)
+        print("BREVO KEY EXISTS:", bool(BREVO_API_KEY))
 
         if not BREVO_API_KEY:
             print("Email failed: BREVO_API_KEY missing")
@@ -84,6 +84,7 @@ def send_email(to_email, subject, body):
     except Exception as e:
         print("Email failed:", e)
         return False
+
 
 @app.route("/")
 def home():
@@ -380,6 +381,10 @@ def approve(food_id):
     }).eq("id", food_id).execute()
 
     donor_email = donation.get("donor_email")
+
+    print("DONOR EMAIL:", donor_email)
+    print("BREVO KEY EXISTS:", bool(BREVO_API_KEY))
+    print("EMAIL USER:", EMAIL_USER)
 
     if donor_email:
         subject = "FoodShare - Your Donation Has Been Successfully Distributed"
