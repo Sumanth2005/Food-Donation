@@ -38,24 +38,48 @@ def valid_email(email):
     return re.fullmatch(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$", email) is not None
 
 
+import requests
+
 def send_email(to_email, subject, body):
     try:
-        if not EMAIL_USER or not EMAIL_PASSWORD:
-            print("Email failed: EMAIL_USER or EMAIL_PASSWORD missing")
+        BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+
+        if not BREVO_API_KEY:
+            print("Email failed: BREVO_API_KEY missing")
             return False
 
-        msg = MIMEText(body)
-        msg["Subject"] = subject
-        msg["From"] = EMAIL_USER
-        msg["To"] = to_email
+        if not EMAIL_USER:
+            print("Email failed: EMAIL_USER missing")
+            return False
 
-        server = smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30)
-        server.login(EMAIL_USER, EMAIL_PASSWORD)
-        server.send_message(msg)
-        server.quit()
+        url = "https://api.brevo.com/v3/smtp/email"
 
-        print("Email sent successfully to", to_email)
-        return True
+        payload = {
+            "sender": {
+                "name": "FoodShare",
+                "email": EMAIL_USER
+            },
+            "to": [
+                {
+                    "email": to_email
+                }
+            ],
+            "subject": subject,
+            "textContent": body
+        }
+
+        headers = {
+            "accept": "application/json",
+            "api-key": BREVO_API_KEY,
+            "content-type": "application/json"
+        }
+
+        response = requests.post(url, json=payload, headers=headers, timeout=30)
+
+        print("Brevo status:", response.status_code)
+        print("Brevo response:", response.text)
+
+        return response.status_code in [200, 201, 202]
 
     except Exception as e:
         print("Email failed:", e)
